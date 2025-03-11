@@ -4,14 +4,20 @@ spring:
       on-profile: dev
   devtools:
     add-properties: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/backend_service
+    username: root
+    password: 060802
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database: mysql
+    show-sql: true
     hibernate:
       ddl-auto: update
-    show-sql: false
     properties:
       hibernate:
         format_sql: true
+        use_sql_comments: true
 
 # application-dev.yml
 springdoc:
