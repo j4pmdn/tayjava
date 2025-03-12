@@ -9,4 +9,7 @@ import vn.hdoan.model.AddressEntity;
 
 @Repository
 public interface AddressRepository extends JpaRepository<AddressEntity, Long> {
+
+    AddressEntity findByUserIdAndAddressType(Long userId, Integer addressType);
+
 }

@@ -4,6 +4,7 @@ package vn.hdoan.service;/*
  */
 
 import vn.hdoan.controller.request.UserCreationRequest;
+import vn.hdoan.controller.request.UserPasswordRequest;
 import vn.hdoan.controller.request.UserUpdateRequest;
 import vn.hdoan.controller.response.UserResponse;
 
@@ -21,9 +22,9 @@ public interface UserService {
 
     long save(UserCreationRequest req);
 
-    void update(UserCreationRequest req);
+    void update(UserUpdateRequest req);
 
-    void changePassword(UserUpdateRequest req);
+    void changePassword(UserPasswordRequest req);
 
     void delete(Long id);
 }

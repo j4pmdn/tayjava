@@ -6,6 +6,7 @@ package vn.hdoan.controller;/*
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/user")
 @Tag(name = "User Controller")
+@Slf4j(topic = "USER-CONTROLLER")
 @RequiredArgsConstructor
 public class UserController {
 
@@ -98,6 +100,9 @@ public class UserController {
     @Operation(summary = "Update User", description = "API update user to database")
     @PutMapping("/upd")
     public Map<String, Object> updateUser(@RequestBody UserUpdateRequest request) {
+        log.info("Updating user: {}", request);
+
+        userService.update(request);
 
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("status", HttpStatus.ACCEPTED.value());
@@ -110,6 +115,8 @@ public class UserController {
     @Operation(summary = "Change password", description = "API update password for user to database")
     @PatchMapping("/change-pwd")
     public Map<String, Object> changePassword(@RequestBody UserPasswordRequest request) {
+        log.info("Changing password for user: {}", request);
+        userService.changePassword(request);
 
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("status", HttpStatus.NO_CONTENT.value());
@@ -122,6 +129,9 @@ public class UserController {
     @Operation(summary = "Delete user", description = "API activate user to database")
     @DeleteMapping("/del/{userId}")
     public Map<String, Object> deleteUser(@PathVariable Long userId) {
+        log.info("Deleting user: {}", userId);
+
+        userService.delete(userId);
 
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("status", HttpStatus.RESET_CONTENT.value());
